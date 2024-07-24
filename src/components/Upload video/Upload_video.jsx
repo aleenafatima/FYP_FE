@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { LuUploadCloud } from "react-icons/lu";
 import axios from 'axios';
 
-const Upload_video = () => {
+const Upload_video = ({ setSelectedFile }) => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
@@ -11,7 +11,9 @@ const Upload_video = () => {
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setSelectedFile(selectedFile);
   };
 
   const handleUpload = async () => {
