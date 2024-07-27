@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPlayCircle } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
@@ -10,9 +10,20 @@ const Page1 = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showVideo, setShowVideo] = useState(false);
 
+  useEffect(() => {
+    if (selectedFile) {
+      setShowVideo(true);
+      console.log("Video ready to display");
+    }
+  }, [selectedFile]);
+
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const handleStart = () => setShowVideo(true);
+  const handleClose = () => {
+    setOpen(false);
+    if (selectedFile) {
+      setShowVideo(true);
+    }
+  };
 
   const modalStyle = {
     position: 'absolute',
@@ -27,11 +38,11 @@ const Page1 = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center mb-24 my-12'>
-      <div className='bg-white w-1/3 h-60 flex justify-center mt-20'>
+    <div className='flex flex-col items-center justify-center h-full'>
+      <div className='bg-white w-1/3 h-72 flex items-center justify-center mt-20'>
         {showVideo && selectedFile ? (
           <video
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             src={URL.createObjectURL(selectedFile)}
             controls
             preload="auto"
@@ -41,19 +52,16 @@ const Page1 = () => {
             Your browser does not support the video tag.
           </video>
         ) : (
-          <div className='m-auto text-6xl text-cyan-500 cursor-pointer justify-center'><FaPlayCircle /></div>
+          <div className='text-6xl text-cyan-500 cursor-pointer'><FaPlayCircle /></div>
         )}
       </div>
       <div className='flex justify-center mt-4 mb-5'>
         <button className='mx-2 bg-cyan-500 text-white py-1 px-5 rounded-md cursor-pointer' onClick={handleOpen}>
           Upload
         </button>
-        <button className='mx-2 bg-cyan-500 text-white py-1 px-5 rounded-md cursor-pointer' onClick={handleStart}>
-          Start
-        </button>
-   
+      
         <NavLink to="/matrices">
-          <button className='mx-2 bg-cyan-500 text-white py-1 px-5 rounded-md cursor-pointer'>Show Metrics</button>
+          <button className='mx-2 bg-cyan-500 text-white py-1 px-5 rounded-md cursor-pointer'>Show Results</button>
         </NavLink>
       </div>
 

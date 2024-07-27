@@ -25,7 +25,7 @@ const Show_Mat = () => {
   }, [videoUrl]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       <div className="bg-white w-1/3 h-70 flex justify-center">
         <video
           className="w-full h-full"
@@ -39,16 +39,17 @@ const Show_Mat = () => {
         </video>
       </div>
      
-      <div className="bg-white w-1/3 h-30 flex mb-5 rounded-md">
-        <div className="m-auto flex justify-center  w-full gap-6">
-          <div className="flex bg-slate-300 flex-col h-32 w-1/4 justify-center align-middle items-center rounded-md">
+      <div className="bg-white w-1/3 h-30 flex flex-col mb-5 justify-center  rounded-md p-14 mt-10">
+      <h1 className="font-bold text-3xl text-blue-800  mb-4">Ball Metrices</h1>
+        <div className="m-auto flex justify-center  w-full gap-16">
+          <div className="flex bg-slate-300 flex-col h-44 w-1/3 justify-center align-middle items-center rounded-md p-10">
             <div className="text-pink-500 text-3xl ">
               <GiThunderball />
             </div>
             <p className="font-bold">Speed</p>
             <p className="font-bold">{data?.speed_metrics || "N/A"}</p>
           </div>
-          <div className="flex bg-slate-300 flex-col h-32 w-1/4 justify-center align-middle items-center rounded-md">
+          <div className="flex bg-slate-300 flex-col h-44 w-1/3 justify-center align-middle items-center rounded-md p-10">
             <div className="text-pink-500 text-3xl">
               <GiCrackedBallDunk />
             </div>
