@@ -5,9 +5,11 @@ import Footer from '../../components/Footer/Footer'
 
 const Home = () => {
   return (
-    <div>
+    <div className="flex flex-col h-screen overflow-hidden">
       <Navbar/>
-      <Page1/>
+      <div className="flex-1 overflow-auto">
+        <Page1/>
+      </div>
       <Footer/>
     </div>
   )
